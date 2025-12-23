@@ -5,6 +5,7 @@ import BlogSection from '@/components/BlogSection';
 import Testimonials from '@/components/Testimonials';
 import TrustBadges from '@/components/TrustBadges';
 import Newsletter from '@/components/Newsletter';
+import ContactSection from '@/components/ContactSection';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -35,15 +36,19 @@ export default function Page() {
       </section>
 
       {/* Newsletter Section */}
-      <section id="contact">
+      <section>
         <Newsletter />
       </section>
+
       {/* Trust Badges Section */}
       <section id="faq">
         <TrustBadges />
       </section>
 
-
+      {/* Contact Section */}
+      <section id="contact">
+        <ContactSection />
+      </section>
 
       {/* Recipes Section */}
       <section id="recipes">

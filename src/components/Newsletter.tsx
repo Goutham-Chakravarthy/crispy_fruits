@@ -15,8 +15,15 @@ const Newsletter = () => {
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-gray-900" />
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-90" />
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-lg scale-105"
+        style={{
+          // Direct image URL from Unsplash CDN so it renders as a background
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=80')",
+        }}
+      />
+      <div className="absolute inset-0 bg-black/60" />
       
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Headline */}
@@ -43,7 +50,7 @@ const Newsletter = () => {
             />
             <button
               type="submit"
-              className="px-8 py-4 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl whitespace-nowrap"
+              className="px-8 py-4 bg-[#EDEAD3] hover:bg-[#d8d4bf] text-gray-900 font-semibold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl whitespace-nowrap"
             >
               Subscribe Now
             </button>

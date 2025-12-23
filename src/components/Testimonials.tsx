@@ -62,7 +62,7 @@ const Testimonials = () => {
               <p className="text-gray-700 text-lg">
                 See how we source and package our products
               </p>
-              <button className="bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <button className="bg-[#EDEAD3] text-gray-900 px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#d8d4bf] transition-all duration-300 transform hover:scale-105 shadow-lg">
                 READ ALL REVIEWS
               </button>
             </div>

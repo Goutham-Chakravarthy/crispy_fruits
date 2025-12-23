@@ -157,7 +157,7 @@ const Footer = () => {
         {/* Bottom Copyright */}
         <div className="border-t border-gray-800 pt-8 text-center">
           <p className="text-gray-400 text-sm">
-            © 2024 Crispy Fruits. All rights reserved.
+            © 2025 Crispy Fruits. All rights reserved.
           </p>
         </div>
       </div>

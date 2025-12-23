@@ -71,13 +71,13 @@ const Navbar = () => {
 
           {/* Right side items */}
           <div className="hidden md:flex items-center space-x-4">
-            <button 
+            <button
               className="p-2 text-gray-700 hover:text-gray-900 transition-colors duration-200"
               aria-label="Search"
             >
               <Search size={20} />
             </button>
-            <button className="bg-black text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-200">
+            <button className="bg-[#EDEAD3] text-gray-900 px-6 py-2 rounded-full text-sm font-medium hover:bg-[#d8d4bf] transition-colors duration-200">
               Sign In
             </button>
           </div>
@@ -108,13 +108,13 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="flex items-center space-x-4 px-3 py-2 border-t border-gray-200 mt-2 pt-4">
-                <button 
+                <button
                   className="p-2 text-gray-700 hover:text-gray-900 transition-colors duration-200"
                   aria-label="Search"
                 >
                   <Search size={20} />
                 </button>
-                <button className="bg-black text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-200">
+                <button className="bg-[#EDEAD3] text-gray-900 px-6 py-2 rounded-full text-sm font-medium hover:bg-[#d8d4bf] transition-colors duration-200">
                   Sign In
                 </button>
               </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
+import { ScrollReveal } from './ScrollReveal';
 
 const TopCategories = () => {
   const [activeCategory, setActiveCategory] = useState('Nuts');
@@ -132,7 +133,7 @@ const TopCategories = () => {
 
   return (
     <section className="py-28 px-6 sm:px-10 lg:px-16 bg-white">
-      <div className="max-w-7xl mx-auto">
+      <ScrollReveal className="max-w-7xl mx-auto" delayMs={100}>
         {/* Title */}
         <div className="text-center mb-12">
           <h2 className="text-[26px] sm:text-[30px] lg:text-[36px] font-bold text-gray-900 mb-4 leading-[1.2] tracking-wide font-heading">
@@ -169,7 +170,7 @@ const TopCategories = () => {
             type="button"
             aria-label="Scroll left"
             onClick={scrollLeft}
-            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center rounded-full bg-black shadow-lg border border-gray-200 hover:bg-opacity-90 hover:text-white transition-colors"
+            className="hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center rounded-full bg-black text-white shadow-lg border border-gray-200 hover:bg-opacity-90 hover:text-white transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -181,7 +182,7 @@ const TopCategories = () => {
             type="button"
             aria-label="Scroll right"
             onClick={scrollRight}
-            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center rounded-full bg-black shadow-lg border border-gray-200 hover:bg-opacity-90 hover:text-white transition-colors"
+            className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-20 h-10 w-10 items-center justify-center rounded-full bg-black text-white shadow-lg border border-gray-200 hover:bg-opacity-90 hover:text-white transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -272,7 +273,7 @@ const TopCategories = () => {
             <div className="absolute inset-0 bg-transparent"></div>
           </button>
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* Custom scrollbar styles */}
       <style jsx>{`

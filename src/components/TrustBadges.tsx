@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { ScrollReveal } from './ScrollReveal';
 
 const TrustBadges = () => {
   const badges = [
@@ -74,7 +75,7 @@ const TrustBadges = () => {
 
   return (
     <section className="py-28 px-6 sm:px-10 lg:px-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
+      <ScrollReveal className="max-w-7xl mx-auto" delayMs={100}>
         {/* Section Title */}
         <div className="text-center mb-12">
           <h2 className="text-[26px] sm:text-[30px] lg:text-[36px] font-bold text-gray-900 mb-4 leading-[1.2] tracking-wide font-heading">
@@ -109,7 +110,7 @@ const TrustBadges = () => {
             </div>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

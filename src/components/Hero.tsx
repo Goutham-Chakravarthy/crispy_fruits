@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { ScrollReveal } from './ScrollReveal';
 
 // Background slideshow images (direct Unsplash CDN URLs) - fruit focused
 const heroImages = [
@@ -57,7 +58,7 @@ const Hero = () => {
       <div className="relative max-w-7xl mx-auto z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Left Column - Text Content */}
-          <div className="space-y-6">
+          <ScrollReveal className="space-y-6" delayMs={100}>
             <div className="space-y-4">
               <h1 className="text-[32px] sm:text-[40px] lg:text-[52px] font-bold text-white leading-[1.15] tracking-wide font-heading">
                 Discover Nature's{' '}
@@ -67,14 +68,16 @@ const Hero = () => {
                 From premium almonds to exotic dried berries, explore our collection of handpicked dry fruits that bring health and flavor to your daily routine. Sustainably sourced, naturally delicious.
               </p>
             </div>
-            
-            <button className="bg-black text-white px-8 py-4 rounded-full text-[15px] font-semibold tracking-wide hover:bg-opacity-90 transition-all duration-300 font-body shadow-lg hover:shadow-xl">
+
+            <button
+              className="bg-black text-white px-8 py-4 rounded-full text-[15px] font-semibold tracking-wide hover:bg-opacity-90 transition-all duration-300 font-body shadow-lg hover:shadow-xl"
+            >
               Shop Now
             </button>
-          </div>
+          </ScrollReveal>
 
           {/* Right Column - Image Grid (Asymmetric Layout) */}
-          <div className="relative h-[440px]">
+          <ScrollReveal className="relative h-[440px]" delayMs={200}>
             {/* Large card - Left (full height) - Almonds */}
             <div className="absolute left-0 top-0 w-[48%] h-full">
               <div className="w-full h-full bg-gray-200 rounded-2xl overflow-hidden">
@@ -82,6 +85,7 @@ const Hero = () => {
                   src="https://images.unsplash.com/photo-1600189020840-e9918c25269d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Premium Almonds"
                   className="w-full h-full object-cover brightness-[0.98]"
+                  loading="eager"
                 />
               </div>
             </div>
@@ -93,6 +97,7 @@ const Hero = () => {
                   src="https://images.unsplash.com/photo-1579282940892-6152e6e80c52?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Pistachios in Bowl"
                   className="w-full h-full object-cover brightness-[0.98]"
+                  loading="eager"
                 />
               </div>
             </div>
@@ -104,10 +109,11 @@ const Hero = () => {
                   src="https://images.unsplash.com/photo-1726771517475-e7acdd34cd8a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Shelled Walnuts"
                   className="w-full h-full object-cover brightness-[0.98]"
+                  loading="eager"
                 />
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

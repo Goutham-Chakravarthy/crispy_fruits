@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Mail, Phone, Clock, Gift } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -22,7 +23,7 @@ const ContactSection = () => {
 
   return (
     <section className="py-28 px-6 sm:px-10 lg:px-16 bg-gradient-to-br from-gray-50 via-white to-gray-50">
-      <div className="max-w-6xl mx-auto">
+      <ScrollReveal className="max-w-6xl mx-auto" delayMs={100}>
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-[26px] sm:text-[30px] lg:text-[36px] font-bold text-gray-900 mb-4 leading-[1.2] tracking-wide font-heading">
@@ -166,7 +167,7 @@ const ContactSection = () => {
             </div>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };

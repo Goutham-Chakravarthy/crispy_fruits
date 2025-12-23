@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { ScrollReveal } from './ScrollReveal';
 
 const BlogSection = () => {
   // Featured article about storage – image shows jars/containers with nuts & dry fruits
@@ -54,7 +55,7 @@ const BlogSection = () => {
     <section className="py-28 px-6 sm:px-10 lg:px-16 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-4">
+        <ScrollReveal className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-4" delayMs={100}>
           <div>
             <h2 className="text-[26px] sm:text-[30px] lg:text-[36px] font-bold text-gray-900 mb-2 leading-[1.2] tracking-wide font-heading">
               Fresh From Our Blog
@@ -69,10 +70,10 @@ const BlogSection = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </button>
-        </div>
+        </ScrollReveal>
 
         {/* Articles Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <ScrollReveal className="grid grid-cols-1 lg:grid-cols-3 gap-10" delayMs={200}>
           {/* Featured Article - Large Card */}
           <div className="lg:col-span-2">
             <article className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100">
@@ -173,7 +174,7 @@ const BlogSection = () => {
               </article>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </div>
 
       {/* Custom styles */}

@@ -46,6 +46,9 @@ const ScrollReveal = ({ children, className = "", delayMs = 0 }: {
 
 const TopCategories = () => {
   const [activeCategory, setActiveCategory] = useState('Nuts');
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
+  const [quantity, setQuantity] = useState(1);
 
   const categories = [
     'Nuts',
@@ -60,67 +63,111 @@ const TopCategories = () => {
   const products = [
     {
       id: 1,
-      name: 'Premium California Almonds',
-      description: 'Rich in protein and perfect for daily snacking',
-      price: '₹599',
-      image: 'https://images.unsplash.com/photo-1600189020840-e9918c25269d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      tag: 'Bestseller',
+      name: 'Pure Himalayan Shilajit',
+      description: 'Enhance your energy and immunity with Pure Himalayan Shilajit. A natural product for muscle building, stamina, and immunity boosting.',
+      price: '₹400',
+      image: 'https://alfajermart.com/wp-content/uploads/2024/05/4-3.jpg',
+      tag: 'Premium',
+      sku: 'SHILAJIT',
     },
     {
       id: 2,
-      name: 'Turkish Apricots',
-      description: 'Sweet, tangy and naturally sun-dried',
-      price: '₹449',
-      image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80',
-      tag: 'New',
+      name: 'Healthy Kashmiri Saffron (Kesar)',
+      description: 'Experience richness of Kashmiri saffron from Al Fajer Mart. A premium spice with incredible benefits for flavor, health, and wellness.',
+      price: '₹300',
+      image: 'https://alfajermart.com/wp-content/uploads/2024/08/1g.jpg',
+      tag: 'Premium',
+      sku: 'ALFAJJER-1',
     },
     {
       id: 3,
-      name: 'Roasted Cashew Mix',
-      description: 'Crunchy cashews roasted to perfection',
-      price: '₹699',
-      image: 'https://images.unsplash.com/photo-1726771517475-e7acdd34cd8a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      tag: 'Popular',
+      name: 'Pure Kashmiri Honey',
+      description: 'Discover rich flavor and natural goodness of pure Kashmiri honey from Al Fajer Mart. 100% organic, raw, and packed with nutrients.',
+      price: '₹200',
+      image: 'https://alfajermart.com/wp-content/uploads/2024/05/7-1.jpg',
+      tag: 'Organic',
+      sku: 'ALFAJJER-0014',
     },
     {
       id: 4,
-      name: 'Afghani Dried Figs',
-      description: 'Premium quality figs with natural sweetness',
-      price: '₹549',
-      image: 'https://plus.unsplash.com/premium_photo-1725986663002-c2b55adc6ba5?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      tag: 'Organic',
+      name: 'Kashmiri Kahwa Tea',
+      description: 'Enjoy rich flavor and health benefits of Kashmiri Kahwa tea, a blend of premium green tea and exotic spices, from Al Fajer Mart.',
+      price: '₹300',
+      image: 'https://alfajermart.com/wp-content/uploads/2024/08/36.jpg',
+      tag: 'Premium',
+      sku: 'ALFAJJER-0017',
     },
     {
       id: 5,
-      name: 'Salted Pistachios',
-      description: 'Lightly salted premium pistachios for a crunchy treat',
-      price: '₹749',
-      image: 'https://plus.unsplash.com/premium_photo-1725874816737-8918f48c41a4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      tag: 'Hot',
+      name: 'Kashmiri Garlic | Lasun',
+      description: 'Shop Kashmiri Garlic (Lasun) at Al Fajer Mart. Known for its potent flavor and medicinal properties, this unique variety boosts immunity, aids digestion, and enhances the taste of your dishes. 100% natural and packed with health benefits.',
+      price: '₹800',
+      image: 'https://alfajermart.com/wp-content/uploads/2024/05/Pure-healthy.jpg',
+      tag: 'Premium',
+      sku: 'ALFAJJER-0019',
     },
     {
       id: 6,
-      name: 'Walnut Kernels',
-      description: 'Omega-3 rich walnut halves for brain health',
-      price: '₹799',
-      image: 'https://plus.unsplash.com/premium_photo-1671405403469-b0ba7787b344?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      name: 'Premium |Kashmiri| Walnut',
+      description: 'Rich in Antioxidants | May Decrease Inflammation | Supports Weight Control | May Help Lower Blood Pressure | Supports Healthy Aging | Supports Good Brain Function | Walnuts are High in Protein | Walnuts are a Vegan Source of Omega-3 Fatty Acids | Walnuts Contain High Amounts of Fiber | Walnuts are High in Phosphorus | Bioavailable Vitamin B6 | Powder like substances can be found in pack, it is natural as it happens due to broken pieces of Walnuts in Transit, Simply sort out walnuts from Powder. Refrigerate Walnut For Long Life and Fresh Taste.',
+      price: '₹500',
+      image: 'https://alfajermart.com/wp-content/uploads/2024/08/walnuts-1kg.jpg',
       tag: 'Premium',
+      sku: 'ALFAJER75676',
     },
     {
       id: 7,
-      name: 'Cranberry Mix',
-      description: 'Tangy dried cranberries mixed with raisins',
-      price: '₹499',
-      image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80',
-      tag: 'Trending',
+      name: 'Kashmiri Almonds by Al Fajer Mart – Premium Quality, Protein-Rich Nuts',
+      description: 'Discover rich taste and superior quality of Al Fajer Mart Kashmiri Almonds. Sourced from pristine regions of Kashmir, these almonds are packed with essential nutrients, including vitamins, minerals, and healthy fats. Ideal for snacking, cooking, or baking, they offer a wholesome crunch and exceptional flavor in every bite.',
+      price: '₹500',
+      image: 'https://alfajermart.com/wp-content/uploads/2024/08/almond-1kg.jpg',
+      tag: 'Premium',
+      sku: 'ALFAJJER-0036',
     },
     {
       id: 8,
-      name: 'Premium Trail Mix',
-      description: 'Nut and berry trail mix for on-the-go energy',
-      price: '₹649',
-      image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80',
-      tag: 'Energy',
+      name: 'Pure Kashmiri Apricot',
+      description: 'Discover rich taste of Kashmiri Apricots. Naturally sweet and packed with vitamins, minerals, and antioxidants, perfect for snacking and support overall health. 100% natural and nutrient-rich.',
+      price: '₹400',
+      image: 'https://alfajermart.com/wp-content/uploads/2024/05/Pure-healthy.png',
+      tag: 'Premium',
+      sku: 'apricot-0046',
+    },
+    {
+      id: 9,
+      name: 'KASHMIRI Dried Morel Mushrooms',
+      description: 'Shop premium Kashmiri Dried Morel Mushrooms at Al Fajer Mart. Known for their rich, earthy flavor and unique texture, these gourmet mushrooms add depth to your dishes and offer numerous health benefits. 100% natural and hand-picked.',
+      price: '₹400',
+      image: 'https://alfajermart.com/wp-content/uploads/2024/05/633ffe979267dd30c97af3da-dried-morel-mushrooms.jpg',
+      tag: 'Special',
+      sku: 'kashmiri-dried-mashrm',
+    },
+    {
+      id: 10,
+      name: 'Original Kashmiri Mamra Almonds',
+      description: 'Al Fajer Mart Mamra Almonds offer exceptional quality and flavor. Sourced from finest regions, these almonds are known for their rich, nutty taste and crunchy texture. Packed with essential nutrients and healthy fats, they make a perfect snack or addition to your favorite recipes.',
+      price: '₹1000',
+      image: 'https://alfajermart.com/wp-content/uploads/2024/08/almond-1kg-1.jpg',
+      tag: 'Premium',
+      sku: 'ALFAJER-3688',
+    },
+    {
+      id: 11,
+      name: 'Kashmiri Red Chilli Powder by Al Fajer Mart – Mild, Flavorful, and Aromatic',
+      description: 'Hand Picked Kashmiri Whole Mirchi, Hand Sorted To make sure every Chilli is of good quality, Pure Kashmiri Mirchi Whole Pure, No added Color Or Fragrances, Big Red Colour Kashmiri Chillis Whole. These Kashmiri Red Chillies will impart a wonderful deep red colour into your Indian/Thai/Oriental without adding too much heat.',
+      price: '₹250',
+      image: 'https://alfajermart.com/wp-content/uploads/2024/05/Food-social-media-promotion-and-instagram-banner-post-6.png',
+      tag: 'Premium',
+      sku: 'ALFAJER6767',
+    },
+    {
+      id: 12,
+      name: 'Kashmir Walnuts in Shell |Kashmiri Sabut Akhrot |Walnuts with Shell',
+      description: 'Discover premium Kashmiri Walnuts at Al Fajer Mart. Fresh, crunchy, and packed with nutrients, our walnuts are rich in omega-3 fatty acids, antioxidants, and protein—perfect for snacking or adding to your favorite recipes. 100% natural and healthy.',
+      price: '₹500',
+      image: 'https://alfajermart.com/wp-content/uploads/2024/08/walnuts-1kg.jpg',
+      tag: 'Premium',
+      sku: 'ALFAJER098098',
     },
   ];
 
@@ -162,6 +209,7 @@ const TopCategories = () => {
             <div
               key={product.id}
               className="group cursor-pointer transform transition-all duration-500 hover:-translate-y-2"
+              onClick={() => setSelectedProduct(product)}
             >
               <div className="bg-white shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
                 {/* Product Image */}
@@ -195,9 +243,42 @@ const TopCategories = () => {
                     <h3 className="text-[20px] font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-300 leading-[1.3] font-heading">
                       {product.name}
                     </h3>
-                    <p className="text-[14px] text-gray-500 mb-4 line-clamp-2 leading-[1.6] font-body">
-                      {product.description}
-                    </p>
+                    <div className="text-[14px] text-gray-500 mb-4 leading-[1.6] font-body">
+                      {expandedCard === product.id ? (
+                        <div className="space-y-2">
+                          <p>{product.description}</p>
+                          <div className="text-xs text-gray-400 bg-gray-50 p-3 rounded-lg">
+                            <p className="font-semibold mb-1">Product Details:</p>
+                            <p><span className="font-medium">SKU:</span> {product.sku}</p>
+                            <p><span className="font-medium">Category:</span> {product.tag === 'Premium' ? 'Premium Quality' : product.tag === 'Organic' ? 'Organic Product' : product.tag === 'Special' ? 'Specialty Item' : 'Standard'}</p>
+                            <p className="mt-2 text-orange-600 font-medium">✓ 100% Natural & Authentic</p>
+                            <p className="text-green-600 font-medium">✓ Quality Assured</p>
+                          </div>
+                        </div>
+                      ) : (
+                        <p className="line-clamp-2">{product.description}</p>
+                      )}
+                      <button
+                        onClick={() => setExpandedCard(expandedCard === product.id ? null : product.id)}
+                        className="text-orange-600 hover:text-orange-700 text-sm font-medium mt-2 transition-colors duration-200 flex items-center gap-1"
+                      >
+                        {expandedCard === product.id ? (
+                          <>
+                            <span>Read Less</span>
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                            </svg>
+                          </>
+                        ) : (
+                          <>
+                            <span>Read More</span>
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </>
+                        )}
+                      </button>
+                    </div>
                   </div>
 
                   {/* Price and Add to Cart */}
@@ -233,6 +314,193 @@ const TopCategories = () => {
           </button>
         </div>
       </ScrollReveal>
+
+      {/* Product Detail Modal */}
+      {selectedProduct && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-start">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">{selectedProduct.name}</h2>
+                <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">
+                    {selectedProduct.tag}
+                  </span>
+                  <span>SKU: {selectedProduct.sku}</span>
+                </div>
+              </div>
+              <button
+                onClick={() => {
+                  setSelectedProduct(null);
+                  setQuantity(1);
+                }}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+                aria-label="Close product details modal"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 p-6">
+              {/* Product Image */}
+              <div className="space-y-4">
+                <div className="relative overflow-hidden rounded-lg bg-gray-100">
+                  <img
+                    src={selectedProduct.image}
+                    alt={selectedProduct.name}
+                    className="w-full h-96 object-cover"
+                  />
+                </div>
+                <div className="grid grid-cols-4 gap-2">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="aspect-square rounded-lg bg-gray-100 overflow-hidden cursor-pointer border-2 border-transparent hover:border-orange-500 transition-colors">
+                      <img
+                        src={selectedProduct.image}
+                        alt={`${selectedProduct.name} view ${i}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Product Details */}
+              <div className="space-y-6">
+                {/* Price and Quantity */}
+                <div className="space-y-4">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-bold text-gray-900">{selectedProduct.price}</span>
+                    <span className="text-gray-500">/500g</span>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm font-medium text-gray-700">Quantity:</span>
+                    <div className="flex items-center border border-gray-300 rounded-lg">
+                      <button
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                        className="px-3 py-2 text-gray-600 hover:bg-gray-100 transition-colors"
+                        aria-label="Decrease quantity"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                        </svg>
+                      </button>
+                      <span className="px-4 py-2 min-w-[60px] text-center font-medium">{quantity}</span>
+                      <button
+                        onClick={() => setQuantity(quantity + 1)}
+                        className="px-3 py-2 text-gray-600 hover:bg-gray-100 transition-colors"
+                        aria-label="Increase quantity"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        </svg>
+                      </button>
+                    </div>
+                    <span className="text-sm text-gray-500">
+                      ({quantity * 500}g total)
+                    </span>
+                  </div>
+
+                  <button className="w-full bg-black text-white py-3 px-6 rounded-lg font-medium hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.447 2.293l6.647 6.646a.5.5 0 00.708-.708l-6.646-6.647a.5.5 0 00-.708 0z" />
+                    </svg>
+                    Add to Cart
+                  </button>
+                </div>
+
+                {/* Product Description */}
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold text-gray-900">Description</h3>
+                  <p className="text-gray-600 leading-relaxed">{selectedProduct.description}</p>
+                </div>
+
+                {/* Product Features */}
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold text-gray-900">Product Features</h3>
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div className="flex items-center gap-2 text-green-600">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      100% Natural
+                    </div>
+                    <div className="flex items-center gap-2 text-green-600">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      Quality Assured
+                    </div>
+                    <div className="flex items-center gap-2 text-green-600">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      Premium Quality
+                    </div>
+                    <div className="flex items-center gap-2 text-green-600">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      Authentic Source
+                    </div>
+                  </div>
+                </div>
+
+                {/* Reviews Section */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold text-gray-900">Customer Reviews</h3>
+                    <div className="flex items-center gap-1">
+                      <div className="flex">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.605 1.603-.921 1.902 0l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.783-1.81 0-2.38l2.8-2.034a1 1 0 00.364-1.118l-1.07-3.292z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <span className="ml-2 text-sm text-gray-600">4.5 (128 reviews)</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    {[
+                      { name: "Rahul Sharma", rating: 5, comment: "Excellent quality product! Very fresh and authentic taste. Will definitely order again.", date: "2 days ago" },
+                      { name: "Priya Patel", rating: 4, comment: "Good quality and fast delivery. The packaging was also very good.", date: "1 week ago" },
+                      { name: "Amit Kumar", rating: 5, comment: "Premium quality as described. Very satisfied with the purchase.", date: "2 weeks ago" }
+                    ].map((review, index) => (
+                      <div key={index} className="border-b border-gray-100 pb-4 last:border-0">
+                        <div className="flex items-start justify-between mb-2">
+                          <div>
+                            <div className="font-medium text-gray-900">{review.name}</div>
+                            <div className="flex items-center gap-2 mt-1">
+                              <div className="flex">
+                                {[1, 2, 3, 4, 5].map((star) => (
+                                  <svg key={star} className={`w-4 h-4 ${star <= review.rating ? 'text-yellow-400' : 'text-gray-300'}`} fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.605 1.603-.921 1.902 0l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.783-1.81 0-2.38l2.8-2.034a1 1 0 00.364-1.118l-1.07-3.292z" />
+                                  </svg>
+                                ))}
+                              </div>
+                              <span className="text-xs text-gray-500">{review.date}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-600">{review.comment}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button className="text-orange-600 hover:text-orange-700 text-sm font-medium transition-colors">
+                    View all reviews
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Custom scrollbar styles */}
       <style jsx>{`

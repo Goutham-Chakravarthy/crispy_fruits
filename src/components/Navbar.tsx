@@ -51,6 +51,7 @@ const Navbar = () => {
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="p-2 text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                aria-label="Toggle mobile menu"
               >
                 <Menu size={20} />
               </button>

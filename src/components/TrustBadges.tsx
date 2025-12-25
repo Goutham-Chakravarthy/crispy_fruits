@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { ScrollReveal } from './ScrollReveal';
 
 const TrustBadges = () => {
-  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [selectedCertificate, setSelectedCertificate] = useState<{fullImage: string; label: string} | null>(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const testimonials = [

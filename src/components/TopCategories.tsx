@@ -3,7 +3,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 // Simple ScrollReveal component
-const ScrollReveal = ({ children, className = "", delayMs = 0 }) => {
+const ScrollReveal = ({ children, className = "", delayMs = 0 }: {
+  children: React.ReactNode;
+  className?: string;
+  delayMs?: number;
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
 

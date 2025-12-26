@@ -46,12 +46,25 @@ const ScrollReveal = ({ children, className = "", delayMs = 0 }: {
 
 const Hero = () => {
   // Countdown timer state - starts from 6.5 days (156 hours)
+  const [scale, setScale] = useState(1);
   const [timeLeft, setTimeLeft] = useState({
     days: 6,
     hours: 12,
     minutes: 0,
     seconds: 0
   });
+
+  // Handle scroll for background zoom effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const newScale = 1 + scrollPosition * 0.0008; // controls zoom speed
+      setScale(Math.min(newScale, 1.2)); // limit max zoom to 1.2x
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -96,11 +109,13 @@ const Hero = () => {
       <section
         className="relative min-h-screen flex items-center py-28 px-6 sm:px-10 lg:px-16"
       >
-        {/* Background image */}
+        {/* Background image with zoom effect */}
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out"
           style={{
             backgroundImage: `url(/Hero_BG.jpg)`,
+            transform: `scale(${scale})`,
+            willChange: 'transform',
           }}
         />
 

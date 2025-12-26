@@ -206,12 +206,15 @@ const TopCategories = () => {
         {/* Product Cards Grid - 4 Columns */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {products.map((product, index) => (
-            <div
+            <ScrollReveal
               key={product.id}
+              delayMs={Math.floor(index / 4) * 150}
               className="group cursor-pointer transform transition-all duration-500 hover:-translate-y-2"
-              onClick={() => setSelectedProduct(product)}
             >
-              <div className="bg-white shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
+              <div
+                className="bg-white shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col"
+                onClick={() => setSelectedProduct(product)}
+              >
                 {/* Product Image */}
                 <div className="relative h-56 overflow-hidden">
                   <img
@@ -298,7 +301,7 @@ const TopCategories = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
